@@ -8,7 +8,7 @@
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production --base-href https://YOUR_USERNAME.github.io/tetris-game/"
+    "deploy": "ng build --configuration production --base-href https://tvietnhat.github.io/tetris-game/"
   },
   "prettier": {
     "overrides": [

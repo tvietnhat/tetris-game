@@ -4,7 +4,7 @@ A classic Tetris game built with Angular. Play the timeless puzzle game where yo
 
 ## Live Demo
 
-🎮 [Play Tetris Game](https://YOUR_USERNAME.github.io/tetris-game/)
+🎮 [Play Tetris Game](https://tvietnhat.github.io/tetris-game/)
 
 ## Features
 
