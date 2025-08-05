@@ -1,0 +1,12 @@
+<div class="game-board">
+  @for (row of getBoardWithCurrentPiece(); track $index) {
+    <div class="board-row">
+      @for (cell of row; track $index) {
+        <div 
+          [class]="getCellClass(cell)"
+          [ngStyle]="getCellStyle(cell)">
+        </div>
+      }
+    </div>
+  }
+</div>

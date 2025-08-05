@@ -1,0 +1,87 @@
+<div class="tetris-game">
+  <div class="game-container">
+    <div class="game-info">
+      <div class="score-panel">
+        <h3>Score</h3>
+        <div class="score">{{ gameState().score }}</div>
+      </div>
+      
+      <div class="level-panel">
+        <h3>Level</h3>
+        <div class="level">{{ gameState().level }}</div>
+      </div>
+      
+      <div class="lines-panel">
+        <h3>Lines</h3>
+        <div class="lines">{{ gameState().lines }}</div>
+      </div>
+      
+      <div class="next-piece-panel">
+        <h3>Next</h3>
+        <div class="next-piece-preview">
+          @if (gameState().nextPiece) {
+            <div class="piece-preview">
+              @for (row of gameState().nextPiece!.shape; track $index) {
+                <div class="preview-row">
+                  @for (cell of row; track $index) {
+                    <div 
+                      class="preview-cell" 
+                      [class.filled]="cell === 1"
+                      [style.background-color]="cell === 1 ? gameState().nextPiece!.color : 'transparent'">
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+      
+      <div class="controls">
+        <h3>Controls</h3>
+        <div class="control-info">
+          <div>← → Move</div>
+          <div>↑ Rotate</div>
+          <div>↓ Soft Drop</div>
+          <div>Space Hard Drop</div>
+          <div>P Pause</div>
+        </div>
+      </div>
+      
+      <div class="game-buttons">
+        <button (click)="startNewGame()" class="btn btn-primary">
+          {{ gameState().isGameOver ? 'New Game' : 'Restart' }}
+        </button>
+        
+        @if (!gameState().isGameOver) {
+          <button (click)="pauseGame()" class="btn btn-secondary">
+            {{ gameState().isPaused ? 'Resume' : 'Pause' }}
+          </button>
+        }
+      </div>
+    </div>
+    
+    <div class="game-board-container">
+      <app-game-board [gameState]="gameState()"></app-game-board>
+      
+      @if (gameState().isGameOver) {
+        <div class="game-over-overlay">
+          <div class="game-over-message">
+            <h2>Game Over!</h2>
+            <p>Final Score: {{ gameState().score }}</p>
+            <button (click)="startNewGame()" class="btn btn-primary">Play Again</button>
+          </div>
+        </div>
+      }
+      
+      @if (gameState().isPaused && !gameState().isGameOver) {
+        <div class="pause-overlay">
+          <div class="pause-message">
+            <h2>Paused</h2>
+            <p>Press P to resume</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
